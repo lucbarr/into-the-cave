@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 const int SQUARE_SIZE = 3;
 const int PIXELS_TILE_SIZE = 24;
 
@@ -15,6 +17,9 @@ struct Vec2 {
   }
   float dist2(Vec2 vec) const {
     return ((x-vec.x)*(x-vec.x)+(y-vec.y)*(y-vec.y));
+  }
+  float dist(Vec2 vec) const {
+    return sqrt((x-vec.x)*(x-vec.x)+(y-vec.y)*(y-vec.y));
   }
   Vec2 operator + (Vec2 vec) const {
     return Vec2(x+vec.x, y+vec.y);
