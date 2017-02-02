@@ -1,4 +1,6 @@
 #include "graphics.h"
+#include "constants.h"
+#include "world.h"
 #include <stdio.h>
 
 int main(){
@@ -17,8 +19,9 @@ int main(){
     window.setActive();
     // OpenGL drawing commands go here...
     // End the current frame and display its contents on screen
+    World world;
+    world.drawTo(window);
     window.display();
-}
-
+  }
   return 0;
 }

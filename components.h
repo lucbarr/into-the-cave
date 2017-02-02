@@ -1,8 +1,8 @@
 #pragma once
 
-#include "world.h"
 #include <SFML/Graphics.hpp>
 #include "constants.h"
+#include "world.h"
 
 class GameObject;
 class World;
@@ -40,13 +40,16 @@ private:
 
 class GameObject{
 public:
-  static int id_;
   Vec2 pos;
   Vec2 vel;
   GameObject(InputComponent* input, GraphicsComponent* graphics, PhysicsComponent* physics):
     input_(input),
     graphics_(graphics),
-    physics_(physics){}
+    physics_(physics){
+      static int id_counter = 0;
+      id_ = id_counter;
+      id_counter ++;
+    }
 
   void update(World& world, sf::RenderWindow& window){
     input_->update(*this);
@@ -54,6 +57,7 @@ public:
     physics_->update(*this, world);
   }
 private:
+  int id_;
   InputComponent* input_;
   GraphicsComponent* graphics_;
   PhysicsComponent* physics_;

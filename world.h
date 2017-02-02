@@ -2,8 +2,9 @@
 
 #include <array>
 #include <vector>
-#include "constants.h"
 #include "components.h"
+#include "graphics.h"
+
 
 // Holds data from all things in the environment
 
@@ -31,9 +32,21 @@ public:
         }
       }
     }
-  }
+ }
   int getSize() const { return SQUARE_SIZE; }
   std::array< std::array<TileType, SQUARE_SIZE>, SQUARE_SIZE> tile_map;
+  void drawTo(sf::RenderWindow& window){
+    Sprite solid_sprite("block1.png" , 0 , 0 , 24, 24);
+    for (int i = 0 ; i < 3; ++i ){
+      for (int j = 0 ; j < 3 ; ++j ){
+        if (tile_map[i][j] == SOLID){
+          solid_sprite.update(i,j);
+          window.draw(solid_sprite);
+        }
+      }
+    }
+  }
 private:
   std::vector<GameObject*> field_objects;
 };
+

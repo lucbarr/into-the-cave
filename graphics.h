@@ -4,9 +4,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "world.h"
-
-
 class Sprite : public sf::Sprite {
 public:
   Sprite(const std::string& sprite, int j, int i, int width, int height){
@@ -26,8 +23,4 @@ private:
   sf::Texture texture_;
   int width_, height_;
 };
-
-//Change this later, shouldn't have global variables.
-Sprite block1("block1.png", 0, 0, PIXELS_TILE_SIZE, PIXELS_TILE_SIZE);
-Sprite block2("block2.png", 1, 0, PIXELS_TILE_SIZE, PIXELS_TILE_SIZE);
 
