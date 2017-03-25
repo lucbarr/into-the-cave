@@ -1,6 +1,8 @@
-#include "graphics.h"
-#include "constants.h"
-#include "world.h"
+
+#include "libs/graphics.h"
+#include "libs/constants.h"
+#include "libs/world.h"
+
 #include <stdio.h>
 
 int main(){

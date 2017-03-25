@@ -62,3 +62,4 @@ private:
   GraphicsComponent* graphics_;
   PhysicsComponent* physics_;
 };
+

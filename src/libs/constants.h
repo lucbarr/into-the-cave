@@ -27,5 +27,5 @@ struct Vec2 {
   Vec2 operator - (Vec2 vec) const {
     return Vec2(x-vec.x, y-vec.y);
   }
-
 };
+
