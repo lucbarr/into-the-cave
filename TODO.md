@@ -8,3 +8,8 @@ TODO list
 - [ ] arrow physics
 - [ ] design some monsters
 - [ ] develop monsters AI (very basic following with hardcoded dumbness)
+
+BUGFIX
+------
+
+- [ ] workspace image loading issue
