@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "graphics.h" 
 #include "constants.h"
 #include "world.h"
 
@@ -10,16 +10,8 @@ class World;
 class PhysicsComponent{
 public:
   virtual ~PhysicsComponent() {}
-  PhysicsComponent(int width, int height, int x, int y) {
-    box_.setSize(sf::Vector2f(width,height));
-    box_.setPosition(x,y);
-    // Color and thickness defined for debugging purposes. Not needed.
-    box_.setOutlineColor(sf::Color::Red);
-    box_.setOutlineThickness(1);
-  }
   virtual void update(GameObject& object, World& world) = 0;
 private:
-  sf::RectangleShape box_; //All objects will be rectangles meanwhile
 };
 
 class GraphicsComponent {
@@ -42,10 +34,11 @@ class GameObject{
 public:
   Vec2 pos;
   Vec2 vel;
-  GameObject(InputComponent* input, GraphicsComponent* graphics, PhysicsComponent* physics):
+  GameObject(InputComponent* input, GraphicsComponent* graphics, PhysicsComponent* physics, Vec2 p0):
     input_(input),
     graphics_(graphics),
     physics_(physics){
+      pos = p0;
       static int id_counter = 0;
       id_ = id_counter;
       id_counter ++;

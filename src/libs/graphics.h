@@ -16,7 +16,7 @@ public:
     width_ = width;
     height_ = height;
   }
-  void update(int j, int i){
+  void update(int i, int j){
     this->setPosition(sf::Vector2f(i*width_,j*height_));
   }
 private:
