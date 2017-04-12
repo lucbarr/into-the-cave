@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "block.h"
-
+#include "char.h"
 
 // Holds data from all things in the environment
 
@@ -33,15 +33,18 @@ public:
         }
       }
     }
- }
+    char_ = createChar(1,1,24,24);
+  }
   int getSize() const { return SQUARE_SIZE; }
   std::array< std::array<TileType, SQUARE_SIZE>, SQUARE_SIZE> tile_map;
   void drawTo(sf::RenderWindow& window){
   for (auto& block : blocks_)
     block->update(*this, window);
+  char_->update(*this, window);
   }
 private:
   std::vector<GameObject*> field_objects;
   std::vector<GameObject*> blocks_;
+  GameObject* char_;
 };
 

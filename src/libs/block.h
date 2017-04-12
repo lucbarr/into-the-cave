@@ -20,10 +20,10 @@ private:
 
 class BlockGraphics : public GraphicsComponent{
 public:
-  BlockGraphics():block_sprite_(Sprite("block1.png", 0, 0, 24, 24)){}
+  BlockGraphics():block_sprite_(Sprite("assets/gfx/block1.png", 0, 0, 24, 24)){}
 
   virtual void update(GameObject& object, sf::RenderWindow& window){
-    block_sprite_.update(object.pos.y, object.pos.x);
+    block_sprite_.update(object.pos.y, object.pos.x, BLOCKWISE);
     window.draw(block_sprite_);
   }
 private:

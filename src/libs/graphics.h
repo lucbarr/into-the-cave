@@ -4,6 +4,11 @@
 
 #include <SFML/Graphics.hpp>
 
+enum PrintType{
+  BLOCKWISE,
+  PIXELWISE
+};
+
 class Sprite : public sf::Sprite {
 public:
   Sprite(const std::string& sprite, int j, int i, int width, int height){
@@ -16,8 +21,15 @@ public:
     width_ = width;
     height_ = height;
   }
-  void update(int i, int j){
-    this->setPosition(sf::Vector2f(i*width_,j*height_));
+  void update(int i, int j, PrintType type){
+    switch(type){
+      case BLOCKWISE:
+        this->setPosition(sf::Vector2f(i*width_,j*height_));
+        break;
+      case PIXELWISE:
+        this->setPosition(sf::Vector2f(i,j));
+        break;
+    }
   }
 private:
   sf::Texture texture_;

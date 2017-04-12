@@ -38,16 +38,21 @@ public:
     input_(input),
     graphics_(graphics),
     physics_(physics){
+      vel = Vec2(0,0);
       pos = p0;
       static int id_counter = 0;
       id_ = id_counter;
       id_counter ++;
     }
+  ~GameObject() { 
+    static int id_counter = 0 ;
+    id_counter--; 
+  }
 
   void update(World& world, sf::RenderWindow& window){
     input_->update(*this);
-    graphics_->update(*this, window);
     physics_->update(*this, world);
+    graphics_->update(*this, window);
   }
 private:
   int id_;
