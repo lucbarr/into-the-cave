@@ -16,9 +16,13 @@ public:
     box_.setPosition(object.pos.x, object.pos.y);
     auto blocks = world.getBlocks();
     object.vel.y += GRAVITY;
+    auto bounds = box_.getGlobalBounds();
+    auto bounds_i = sf::Rect<int> (bounds);
+    sf::IntRect future(bounds_i.left+object.vel.x,bounds_i.top+object.vel.y, bounds.width, bounds.height);
     for (auto block : blocks){
-      if (block->getPhysics()->getBox().getGlobalBounds().intersects(box_.getGlobalBounds())){
-        if (object.vel.y >= 0) object.vel.y = 0;
+    sf::IntRect block_bound = sf::Rect<int> (block->getPhysics()->getBox().getGlobalBounds());
+      if (block_bound.intersects(future)){
+        if (object.vel.y > 0) object.vel.y = 0;
       }
     }
     object.pos.x += object.vel.x;
@@ -29,7 +33,7 @@ public:
 
 class CharGraphics: public GraphicsComponent{
 public:
-  CharGraphics():char_sprite_(Sprite("assets/gfx/block1.png", 0, 0, 24, 24)){}
+  CharGraphics():char_sprite_(Sprite("assets/gfx/ekki.png", 0, 0, 24, 24)){}
 
   virtual void update(GameObject& object, sf::RenderWindow& window){
     char_sprite_.update(object.pos.x,object.pos.y);
