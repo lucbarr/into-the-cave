@@ -2,10 +2,6 @@
 
 #include "components.h"
 
-#include <iostream>
-
-using namespace std;
-
 const int CHAR_STD_SIZE = 24;
 
 class CharPhysics: public PhysicsComponent{
@@ -17,14 +13,17 @@ public:
     box_.setOutlineThickness(1);
   }
   virtual void update(GameObject& object, World& world){
+    box_.setPosition(object.pos.x, object.pos.y);
+    auto blocks = world.getBlocks();
+    for (auto block : blocks){
+      if (block->getPhysics()->getBox().getGlobalBounds().intersects(box_.getGlobalBounds())){
+        if (object.vel.y >= 0) object.vel.y = 0;
+      }
+    }
     object.pos.x += object.vel.x;
     object.pos.y += object.vel.y;
-    box_.setPosition(object.pos.x, object.pos.y);
-    cerr << object.pos.x << " " << object.pos.y << endl;
     // ...
   }
-private:
-  sf::RectangleShape box_;
 };
 
 class CharGraphics: public GraphicsComponent{
@@ -32,12 +31,10 @@ public:
   CharGraphics():char_sprite_(Sprite("assets/gfx/block1.png", 0, 0, 24, 24)){}
 
   virtual void update(GameObject& object, sf::RenderWindow& window){
-    cerr << object.pos.x << " " << object.pos.y << endl;
-    char_sprite_.update(object.pos.x,object.pos.y, PIXELWISE);
+    char_sprite_.update(object.pos.x,object.pos.y);
     window.draw(char_sprite_);
   }
 private:
-  BlockPhysics* physics_;
   Sprite char_sprite_;
 };
 

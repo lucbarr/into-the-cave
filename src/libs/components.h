@@ -10,7 +10,9 @@ class PhysicsComponent{
 public:
   virtual ~PhysicsComponent() {}
   virtual void update(GameObject& object, World& world) = 0;
-private:
+  sf::RectangleShape getBox() const { return box_; }
+protected:
+  sf::RectangleShape box_;
 };
 
 class GraphicsComponent {
@@ -57,6 +59,7 @@ public:
   InputComponent* getInput() const { return input_; }
   GraphicsComponent* getGraphics() const { return graphics_; };
   PhysicsComponent* getPhysics() const { return physics_; };
+  int getId() const { return id_; }
 private:
   int id_;
   InputComponent* input_;

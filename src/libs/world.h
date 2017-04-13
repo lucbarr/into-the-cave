@@ -2,9 +2,8 @@
 
 #include <array>
 #include <vector>
+#include "components.h"
 
-#include "block.h"
-#include "char.h"
 
 // Holds data from all things in the environment
 
@@ -15,36 +14,10 @@ enum TileType{
 
 class World{
 public:
-  World() {
-    int level[3][3] = {
-        {0,0,0},  
-        {0,0,0},
-        {1,1,1}   
-    };
-    for (int i = 0; i < 3; ++i){
-      for (int j = 0; j < 3; ++j){
-        switch (level[i][j]){
-          case 0:
-            tile_map[i][j] = FREE;
-            break;
-          case 1:
-            tile_map[i][j] = SOLID;
-            blocks_.push_back(createBlock(i,j,24,24));
-        }
-      }
-    }
-    char_ = createChar(24,24,24,24);
-  }
-
-  void drawTo(sf::RenderWindow& window){
-    // sequence determines what overlays what...
-    // I know, I know... kinda ugly.
-    char_->update(*this, window);
-    for (auto& block : blocks_)
-      block->update(*this, window);
-  }
+  World();
+  void drawTo(sf::RenderWindow& window); 
   int getSize() const { return SQUARE_SIZE; }
-  std::vector<GameObject*> getBlocks() const { return blocks_; }
+  std::vector<GameObject*> getBlocks() const ; 
   std::array< std::array<TileType, SQUARE_SIZE>, SQUARE_SIZE> tile_map;
 private:
   std::vector<GameObject*> field_objects_;

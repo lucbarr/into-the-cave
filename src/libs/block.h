@@ -15,8 +15,6 @@ public:
     // ...
   } 
   sf::RectangleShape getBox() const { return box_; }
-private:
-  sf::RectangleShape box_;
 };
 
 class BlockGraphics : public GraphicsComponent{
@@ -24,11 +22,10 @@ public:
   BlockGraphics():block_sprite_(Sprite("assets/gfx/block1.png", 0, 0, 24, 24)){}
 
   virtual void update(GameObject& object, sf::RenderWindow& window){
-    block_sprite_.update(object.pos.y, object.pos.x, BLOCKWISE);
+    block_sprite_.update(object.pos.x, object.pos.y);
     window.draw(block_sprite_);
   }
 private:
-  BlockPhysics* physics_;
   Sprite block_sprite_;
 };
 
