@@ -33,17 +33,21 @@ public:
         }
       }
     }
-    char_ = createChar(1,1,24,24);
+    char_ = createChar(24,24,24,24);
+  }
+
+  void drawTo(sf::RenderWindow& window){
+    // sequence determines what overlays what...
+    // I know, I know... kinda ugly.
+    char_->update(*this, window);
+    for (auto& block : blocks_)
+      block->update(*this, window);
   }
   int getSize() const { return SQUARE_SIZE; }
+  std::vector<GameObject*> getBlocks() const { return blocks_; }
   std::array< std::array<TileType, SQUARE_SIZE>, SQUARE_SIZE> tile_map;
-  void drawTo(sf::RenderWindow& window){
-  for (auto& block : blocks_)
-    block->update(*this, window);
-  char_->update(*this, window);
-  }
 private:
-  std::vector<GameObject*> field_objects;
+  std::vector<GameObject*> field_objects_;
   std::vector<GameObject*> blocks_;
   GameObject* char_;
 };

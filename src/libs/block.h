@@ -13,7 +13,8 @@ public:
   virtual void update(GameObject& object, World& world){
     box_.setPosition(object.pos.x, object.pos.y);
     // ...
-  }
+  } 
+  sf::RectangleShape getBox() const { return box_; }
 private:
   sf::RectangleShape box_;
 };
@@ -42,3 +43,4 @@ GameObject* createBlock(int x , int y, int width, int height) {
                         new BlockPhysics(width, height),
                         Vec2(x,y));
 }
+

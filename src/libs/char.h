@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const int CHAR_STD_SIZE = 24;
+
 class CharPhysics: public PhysicsComponent{
 public:
   CharPhysics(int width, int height) {
@@ -48,6 +50,13 @@ public:
       object.vel.x = 1;
     } else {
       object.vel.x = 0;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+      object.vel.y = -1;
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+      object.vel.y = 1;
+    } else {
+      object.vel.y = 0;
     }
   }
 };

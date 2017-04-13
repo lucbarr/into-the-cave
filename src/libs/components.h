@@ -54,6 +54,10 @@ public:
     physics_->update(*this, world);
     graphics_->update(*this, window);
   }
+
+  InputComponent* getInput() const { return input_; }
+  GraphicsComponent* getGraphics() const { return graphics_; };
+  PhysicsComponent* getPhysics() const { return physics_; };
 private:
   int id_;
   InputComponent* input_;
