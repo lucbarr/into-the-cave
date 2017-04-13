@@ -2,7 +2,6 @@
 
 #include "graphics.h" 
 #include "constants.h"
-#include "world.h"
 
 class GameObject;
 class World;
