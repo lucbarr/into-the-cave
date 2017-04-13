@@ -15,6 +15,7 @@ public:
   virtual void update(GameObject& object, World& world){
     box_.setPosition(object.pos.x, object.pos.y);
     auto blocks = world.getBlocks();
+    object.vel.y += GRAVITY;
     for (auto block : blocks){
       if (block->getPhysics()->getBox().getGlobalBounds().intersects(box_.getGlobalBounds())){
         if (object.vel.y >= 0) object.vel.y = 0;
@@ -48,6 +49,7 @@ public:
     } else {
       object.vel.x = 0;
     }
+    /*
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
       object.vel.y = -1;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
@@ -55,6 +57,10 @@ public:
     } else {
       object.vel.y = 0;
     }
+    */
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+      object.vel.y = -5;
+
   }
 };
 

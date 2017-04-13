@@ -4,6 +4,7 @@
 
 const int SQUARE_SIZE = 3;
 const int PIXELS_TILE_SIZE = 24;
+const int GRAVITY = 1;
 
 struct Vec2 {
   int x, y;
